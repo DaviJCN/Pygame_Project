@@ -64,6 +64,12 @@ class Game:
             if self.jogador_direcao
             else self.jogador_direcao
         )  # "Normaliza" a direção do jogador
+        self.jogador_rect.centerx += (
+            self.velocidade_jogador * dt * self.jogador_direcao[0]
+        )
+        self.jogador_rect.centery += (
+            self.velocidade_jogador * dt * self.jogador_direcao[1]
+        )
 
     def mouse(self):  # Rastreia o mouse
         self.mouse_pos = pygame.mouse.get_pos()  # Obtém a posição atual do mouse
