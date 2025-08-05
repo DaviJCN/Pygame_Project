@@ -98,6 +98,18 @@ class Game:
         dy = self.mouse_pos[1] - self.jogador_rect.centery
         distance = math.sqrt(dx*dx + dy*dy)
         
-
-
+        angulo_radiano= math.atan2(dy,dx) #retorna o angulo em radianos entre o jogador e o mouse
+        angulo_graus= math.degrees(angulo_radiano) #transforma para graus
+        seta_rotacionada=pygame.transform.rotate(self.seta_img, -angulo_graus -90) #posição da seta para vetical
+        
+        valor_cosseno=math.cos(angulo_radiano)
+        valor_seno=math.sin(angulo_radiano) #calcula o seno e o cosseno 
+        
+        pos_x = self.jogador_rect.centerx + 38 * valor_cosseno
+        pos_y = self.jogador_rect.centery + 38 * valor_seno #define a posição da seta 
+        
+        self.display_surface.blit(seta_rotacionada, seta_rotacionada.get_rect (center=(pos_x, pos_y))) #coloca a seta na tela com as informações desenvolvidas
+       
 Game()
+
+
