@@ -50,6 +50,7 @@ class Game:
             self.circle_anti_bobby()
             self.draw_arrow()  # Desenha a seta
             pygame.display.update()
+            print(self.mouse_pos)
             
     def input(self, dt):  # Input WASD Básico
         keys = pygame.key.get_pressed()
