@@ -109,28 +109,29 @@ class Game:
         )  # Circulo de colisão do anti_bobby
 
     def cachorro_segue_mouse(self):
-        if pygame.mouse.get_pressed()[0]:
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_SPACE]:
             self.bala_ativa = 1
         if self.bala_ativa == 1:
             self.display_surface.blit(self.bala_imagem, self.bala_imagem_rect)
-            if abs(self.bala_imagem_rect.x - self.mouse_pos[0]) > 1:
-                if self.bala_imagem_rect.x < self.mouse_pos[0]:
-                    self.bala_imagem_rect.centerx += 2
-                elif self.bala_imagem_rect.x > self.mouse_pos[0]:
-                    self.bala_imagem_rect.centerx -= 2
+            if abs(self.bala_imagem_rect.x - self.jogador_rect[0]) > 1:
+                if self.bala_imagem_rect.x < self.jogador_rect[0]:
+                    self.bala_imagem_rect.centerx += 1.5
+                elif self.bala_imagem_rect.x > self.jogador_rect[0]:
+                    self.bala_imagem_rect.centerx -= 1.5
 
-            if abs(self.bala_imagem_rect.y - self.mouse_pos[1]) > 1:
-                if self.bala_imagem_rect.y < self.mouse_pos[1]:
-                    self.bala_imagem_rect.centery += 2
-                elif self.bala_imagem_rect.y > self.mouse_pos[1]:
-                    self.bala_imagem_rect.centery -= 2
+            if abs(self.bala_imagem_rect.y - self.jogador_rect[1]) > 1:
+                if self.bala_imagem_rect.y < self.jogador_rect[1]:
+                    self.bala_imagem_rect.centery += 1.5
+                elif self.bala_imagem_rect.y > self.jogador_rect[1]:
+                    self.bala_imagem_rect.centery -= 1.5
 
-            dx = self.mouse_pos[0] - self.bala_imagem_rect.x
-            dy = self.mouse_pos[1] - self.bala_imagem_rect.y
+            dx = self.jogador_rect[0] - self.bala_imagem_rect.x
+            dy = self.jogador_rect[1] - self.bala_imagem_rect.y
             distance = math.sqrt(dx * dx + dy * dy)
             if distance < 1.5:
                 self.running = False
-            print(distance)
+
 
     def draw_arrow(self):
         # Calcula a distância entre o personagem e o mouse
@@ -156,6 +157,9 @@ class Game:
             seta_rotacionada, seta_rotacionada.get_rect(center=(pos_x, pos_y))
         )  # coloca a seta na tela com as informações desenvolvidas
         self.cachorro_segue_mouse()
+    
+    def tiro():
+        pass
 
 
 Game()
